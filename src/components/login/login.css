@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: #eaf5ea; /* Verde muito claro */
+    background-color: #eaf5ea; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,7 +18,7 @@ body {
 }
 
 .login-card {
-    background-color: #f9fdf9; /* Verde claro suave */
+    background-color: #f9fdf9;
     border-radius: 15px;
     padding: 2rem;
     width: 90%;
@@ -30,7 +30,7 @@ body {
 
 .login-title {
     margin-bottom: 1.5rem;
-    color: #6d8b50; /* Verde escuro */
+    color: #6d8b50; 
     font-size: 2rem;
     font-weight: 700;
 }
@@ -43,25 +43,25 @@ body {
 
 .login-input {
     padding: 0.8rem;
-    border: 2px solid #6d8b50; /* Verde escuro */
+    border: 2px solid #6d8b50; 
     border-radius: 10px;
     font-size: 1rem;
     outline: none;
     transition: all 0.3s ease;
-    background-color: #f4f9f4; /* Verde muito claro */
-    width: 80%; /* Ajusta a largura para 80% do card */
-    margin: 0 auto; /* Centraliza o input */
+    background-color: #f4f9f4; 
+    width: 80%; 
+    margin: 0 auto; 
 }
 
 
 .login-input:focus {
-    border-color: #4f6739; /* Verde mais escuro */
+    border-color: #4f6739; 
     box-shadow: 0 0 8px rgba(44, 110, 73, 0.5);
 }
 
 .login-button {
     padding: 0.8rem;
-    background-color: #6d8b50; /* Verde escuro */
+    background-color: #6d8b50; 
     color: #fff;
     border: none;
     border-radius: 10px;
@@ -69,12 +69,12 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    width: 90%; /* Ajusta a largura para 80% do card */
-    margin: 0 auto; /* Centraliza o input */
+    width: 90%; 
+    margin: 0 auto; 
 }
 
 .login-button:hover {
-    background-color: #4f6739; /* Verde ainda mais escuro */
+    background-color: #4f6739; 
 }
 
 .login-footer {
@@ -85,12 +85,12 @@ body {
 }
 
 .login-link {
-    color: #6d8b50; /* Verde escuro */
+    color: #6d8b50;
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .login-link:hover {
     text-decoration: underline;
-    color: #6d8b50; /* Verde mais escuro */
+    color: #6d8b50;
 }

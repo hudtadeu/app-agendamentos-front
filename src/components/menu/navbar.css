@@ -1,0 +1,173 @@
+.top-navbar {
+    position: fixed;
+    top: 0;
+    left: 250px; 
+    width: calc(100% - 250px); 
+    height: 60px;
+    background-color: transparent; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    z-index: 1000;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    flex: 1; 
+    text-align: center; 
+    color: #4f6739;
+}
+
+.menu-icon {
+    font-size: 1.5rem; 
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px; 
+    width: 60px;
+    margin-right: 15px;
+    color: #4f6739;
+}
+
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 96vh;
+    background-color: #f9f9f9; 
+    color: #6d8b50; 
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transform: translateX(-100%); 
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 0; 
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1);
+    border-radius: 0px 10px 10px 0px;
+}
+
+.side-menu.open {
+    transform: translateX(0);
+}
+
+/* Menu lateral moderno */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 96vh;
+    background-color: #f9f9f9; /* Fundo claro */
+    color: #6d8b50; /* Texto no tom verde */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transform: translateX(-100%); /* Esconde o menu inicialmente */
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Espaçamento entre itens */
+    padding: 1rem 0; /* Espaçamento interno */
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.1); /* Sombras suaves */
+    border-radius: 0 20px 20px 0; /* Bordas arredondadas na direita */
+}
+
+.side-menu.open {
+    transform: translateX(0); /* Exibe o menu quando aberto */
+}
+
+/* Logo no menu */
+.side-menu .menu-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Linha de separação */
+    color: #6d8b50; /* Verde desejado */
+}
+
+/* Links do menu */
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.side-menu ul li {
+    padding: 0.5rem 1rem;
+}
+
+.side-menu ul li a {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Espaçamento entre ícone e texto */
+    text-decoration: none;
+    color: #6d8b50; /* Verde clean */
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.8rem 1rem;
+    border-radius: 8px; /* Bordas arredondadas */
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.side-menu ul li a:hover {
+    background-color: #e7f1df; /* Fundo verde claro ao passar o mouse */
+    color: #4a6131; /* Verde mais escuro */
+}
+
+/* Ícones no menu */
+.side-menu ul li a .icon {
+    font-size: 1.2rem;
+}
+
+/* Botão de fechar no estilo circular */
+.menu-toggle {
+    position: absolute;
+    top: 10%; /* Centraliza verticalmente */
+    right: -15px; /* Posiciona à direita do menu */
+    transform: translateY(-50%) rotate(0deg); /* Inicialmente neutro */
+    width: 30px;
+    height: 30px;
+    background-color: #6d8b50; /* Fundo verde */
+    color: #f9f9f9; /* Ícone branco */
+    border-radius: 50%; /* Forma circular */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para destaque */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    z-index: 10000; /* Certifique-se de que está acima de outros elementos */
+}
+
+.menu-toggle:hover {
+    background-color: #4a6131; /* Verde mais escuro ao passar o mouse */
+}
+
+.side-menu.open .menu-toggle {
+    transform: translateY(-50%) rotate(180deg); /* Gira o ícone ao abrir o menu */
+}
+
+
+.menu-close {
+    align-self: flex-end;
+    margin-right: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #6d8b50;
+    transition: color 0.3s ease;
+}
+
+.menu-close:hover {
+    color: #4a6131; 
+}
+
+
