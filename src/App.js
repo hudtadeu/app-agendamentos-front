@@ -1,21 +1,21 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from '../src/components/login/Login';
-import Navbar from '../src/components/menu/Navbar';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "../src/components/menu/Navbar";
+import CalendarDashboard from "../src/components/dashboard/CalendarDashboard";
 
 function App() {
   return (
     <Router>
-      <Routes>
-        {/* Rota para Login */}
-        <Route path="/" element={<Login />} />
-
-        {/* Rota para o Menu Principal */}
-        <Route path="/menu" element={<Navbar />} />
-
-        {/* Exemplo de rota não encontrada (404) */}
-        <Route path="*" element={<h1>Página não encontrada</h1>} />
-      </Routes>
+      <div style={{ display: "flex", height: "100vh" }}>
+        {/* Menu Lateral e Barra de Topo */}
+        <Navbar />
+        {/* Conteúdo Principal */}
+        <div style={{ flex: 1, overflow: "auto" }}>
+          <Routes>
+            <Route path="/" element={<CalendarDashboard />} />
+          </Routes>
+        </div>
+      </div>
     </Router>
   );
 }
