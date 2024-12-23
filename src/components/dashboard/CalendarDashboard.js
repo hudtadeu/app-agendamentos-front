@@ -4,7 +4,21 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import listPlugin from "@fullcalendar/list";
 import interactionPlugin from "@fullcalendar/interaction";
-import { Box, Paper, Button, Typography, Checkbox, FormControlLabel, Divider } from "@mui/material";
+import {
+  Box,
+  Paper,
+  Button,
+  Typography,
+  Checkbox,
+  FormControlLabel,
+  Divider,
+  Modal,
+  TextField,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
+} from "@mui/material";
 
 const CalendarDashboard = () => {
   const [eventFilters, setEventFilters] = useState({
@@ -13,6 +27,18 @@ const CalendarDashboard = () => {
     familia: true,
     feriado: true,
     etc: true,
+  });
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newEvent, setNewEvent] = useState({
+    title: "",
+    category: "familia",
+    startDate: "",
+    endDate: "",
+    allDay: false,
+    url: "",
+    location: "",
+    description: "",
   });
 
   const events = [
@@ -30,6 +56,20 @@ const CalendarDashboard = () => {
       ...prev,
       [category]: !prev[category],
     }));
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setNewEvent({
+      title: "",
+      category: "familia",
+      startDate: "",
+      endDate: "",
+      allDay: false,
+      url: "",
+      location: "",
+      description: "",
+    });
   };
 
   return (
@@ -56,6 +96,7 @@ const CalendarDashboard = () => {
         <Button
           variant="contained"
           fullWidth
+          onClick={() => setIsModalOpen(true)}
           sx={{
             mb: 3,
             backgroundColor: "#6d8b50",
@@ -140,7 +181,7 @@ const CalendarDashboard = () => {
             padding: "5px 10px",
             fontWeight: "bold",
             textTransform: "none",
-            boxShadow: "none", 
+            boxShadow: "none",
           },
           "& .fc-button:hover": {
             backgroundColor: "#4f6739",
@@ -149,13 +190,13 @@ const CalendarDashboard = () => {
           "& .fc-button:focus": {
             backgroundColor: "#4f6739",
             borderColor: "#6d8b50",
-            boxShadow: "none", 
+            boxShadow: "none",
           },
           "& .fc-button:active, & .fc-button-active": {
             backgroundColor: "#4f6739",
             borderColor: "#6d8b50",
-            outline: "none", 
-            boxShadow: "none !important", 
+            outline: "none",
+            boxShadow: "none !important",
           },
         }}
       >
@@ -187,6 +228,107 @@ const CalendarDashboard = () => {
           dayHeaderFormat={{ weekday: "long" }}
         />
       </Box>
+      <Modal open={isModalOpen} onClose={handleModalClose}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 400,
+            bgcolor: "background.paper",
+            boxShadow: 24,
+            p: 4,
+            borderRadius: 2,
+          }}
+        >
+          <Typography variant="h6" mb={2}>
+            Adicionar Evento
+          </Typography>
+          <TextField
+            fullWidth
+            label="Título"
+            value={newEvent.title}
+            onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
+            sx={{ mb: 2 }}
+          />
+          <FormControl fullWidth sx={{ mb: 2 }}>
+            <InputLabel sx={{ background: "white", padding: "0 4px" }}>Rótulo</InputLabel>
+            <Select
+              value={newEvent.category}
+              onChange={(e) => setNewEvent({ ...newEvent, category: e.target.value })}
+            >
+              <MenuItem value="pessoal">Pessoal</MenuItem>
+              <MenuItem value="negocios">Negócios</MenuItem>
+              <MenuItem value="familia">Família</MenuItem>
+              <MenuItem value="feriado">Feriado</MenuItem>
+              <MenuItem value="etc">Outros</MenuItem>
+            </Select>
+          </FormControl>
+          <TextField
+            fullWidth
+            type="date"
+            label="Data de início"
+            InputLabelProps={{ shrink: true }}
+            value={newEvent.startDate}
+            onChange={(e) => setNewEvent({ ...newEvent, startDate: e.target.value })}
+            sx={{ mb: 2 }}
+          />
+          <TextField
+            fullWidth
+            type="date"
+            label="Data de término"
+            InputLabelProps={{ shrink: true }}
+            value={newEvent.endDate}
+            onChange={(e) => setNewEvent({ ...newEvent, endDate: e.target.value })}
+            sx={{ mb: 2 }}
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={newEvent.allDay}
+                onChange={(e) => setNewEvent({ ...newEvent, allDay: e.target.checked })}
+              />
+            }
+            label="O dia todo"
+          />
+          <TextField
+            fullWidth
+            label="URL do evento"
+            value={newEvent.url}
+            onChange={(e) => setNewEvent({ ...newEvent, url: e.target.value })}
+            sx={{ mb: 2 }}
+          />
+          <TextField
+            fullWidth
+            label="Localização"
+            value={newEvent.location}
+            onChange={(e) => setNewEvent({ ...newEvent, location: e.target.value })}
+            sx={{ mb: 2 }}
+          />
+          <TextField
+            fullWidth
+            label="Descrição"
+            multiline
+            rows={3}
+            value={newEvent.description}
+            onChange={(e) => setNewEvent({ ...newEvent, description: e.target.value })}
+            sx={{ mb: 2 }}
+          />
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Button
+              variant="contained"
+              onClick={handleModalClose}
+              sx={{ backgroundColor: "#6d8b50", "&:hover": { backgroundColor: "#4f6739" } }}
+            >
+              Adicionar
+            </Button>
+            <Button onClick={handleModalClose} sx={{ color: "#6d8b50" }}>
+              Cancelar
+            </Button>
+          </Box>
+        </Box>
+      </Modal>
     </Box>
   );
 };
