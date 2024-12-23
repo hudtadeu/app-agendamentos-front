@@ -1,28 +1,10 @@
-import React, { useState } from "react";
-import {
-  Box,
-  Typography,
-  AppBar,
-  Toolbar,
-  Drawer,
-  IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
+import React from "react";
+import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Box, Divider, Typography } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faInfoCircle, faCog, faEnvelope, faBars } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faInfoCircle, faCog, faEnvelope, faSignOutAlt, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(true); 
-
-  const toggleDrawer = () => {
-    setIsOpen(!isOpen);
-  };
-
+const Navbar = ({ isOpen, sidebarWidth, onLogout }) => {
   const menuItems = [
     { text: "Home", icon: faHome, link: "/" },
     { text: "Sobre", icon: faInfoCircle, link: "/about" },
@@ -31,57 +13,110 @@ const Navbar = () => {
   ];
 
   return (
-    <>
-      <AppBar
-        position="fixed"
-        sx={{
-            zIndex: (theme) => theme.zIndex.drawer + 1,
-            backgroundColor: "#fff", 
-            color: "#6d8b50", 
-            boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", 
-        }}
-        >
-        <Toolbar>
-          <IconButton edge="start" color="inherit" onClick={toggleDrawer} sx={{ marginRight: 2 }}>
-            <FontAwesomeIcon icon={faBars} />
-          </IconButton>
-          <Typography variant="h6" noWrap>
-            MyApp
-          </Typography>
-        </Toolbar>
-      </AppBar>
-      <Drawer
-        variant="persistent"
-        anchor="left"
-        open={isOpen}
-        sx={{
-          width: 250,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
-            width: 250,
-            boxSizing: "border-box",
-            backgroundColor: "#f9f9f9",
+    <Drawer
+      variant="persistent"
+      anchor="left"
+      open={isOpen}
+      sx={{
+        width: isOpen ? sidebarWidth : 0,
+        flexShrink: 0,
+        "& .MuiDrawer-paper": {
+          width: sidebarWidth,
+          boxSizing: "border-box",
+          backgroundColor: "#ffffff",
+          color: "#6d8b50",
+          boxShadow: "0 0 10px rgba(44, 110, 73, 0.2)",
+          transition: "width 0.3s ease-in-out",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        },
+      }}
+    >
+      <Box>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px 0",
             color: "#6d8b50",
-          },
-        }}
-      >
-        <Toolbar />
-        <Box sx={{ overflow: "auto" }}>
-          <List>
-            {menuItems.map((item, index) => (
-              <ListItem key={index} disablePadding>
-                <ListItemButton component={Link} to={item.link}>
-                  <ListItemIcon>
-                    <FontAwesomeIcon icon={item.icon} style={{ color: "#6d8b50" }} />
-                  </ListItemIcon>
-                  <ListItemText primary={item.text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
+            gap: "8px",
+          }}
+        >
+          <FontAwesomeIcon icon={faCalendarAlt} style={{ fontSize: "1.8rem", color: "#6d8b50" }} />
+          <Typography
+            variant="h6"
+            sx={{
+              fontWeight: "bold",
+              fontSize: "1.4rem",
+              color: "#6d8b50",
+            }}
+          >
+            TáNaAgenda
+          </Typography>
         </Box>
-      </Drawer>
-    </>
+        <List>
+          {menuItems.map((item, index) => (
+            <ListItem key={index} disablePadding>
+              <ListItemButton
+                component={Link}
+                to={item.link}
+                sx={{
+                  borderRadius: "8px",
+                  transition: "all 0.3s ease",
+                  margin: "5px 16px",
+                  "&:hover": {
+                    backgroundColor: "#e0f7e4",
+                    color: "#6d8b50",
+                    transform: "translateX(10px)",
+                  },
+                  "&:hover .MuiListItemIcon-root, &:hover .MuiListItemText-root": {
+                    color: "#6d8b50",
+                  },
+                }}
+              >
+                <ListItemIcon sx={{ color: "#6d8b50" }}>
+                  <FontAwesomeIcon icon={item.icon} />
+                </ListItemIcon>
+                <ListItemText
+                  primary={item.text}
+                  sx={{ color: "#4f6739", fontWeight: "bold" }}
+                />
+              </ListItemButton>
+            </ListItem>
+          ))}
+        </List>
+      </Box>
+      <Box sx={{ pb: 2 }}>
+        <ListItem disablePadding>
+          <ListItemButton
+            onClick={onLogout}
+            sx={{
+              borderRadius: "8px",
+              transition: "all 0.3s ease",
+              margin: "5px 16px",
+              "&:hover": {
+                backgroundColor: "#e0f7e4",
+                color: "#6d8b50",
+                transform: "translateX(10px)",
+              },
+              "&:hover .MuiListItemIcon-root, &:hover .MuiListItemText-root": {
+                color: "#6d8b50",
+              },
+            }}
+          >
+            <ListItemIcon sx={{ color: "#6d8b50" }}>
+              <FontAwesomeIcon icon={faSignOutAlt} />
+            </ListItemIcon>
+            <ListItemText
+              primary="Sair"
+              sx={{ color: "#4f6739", fontWeight: "bold" }}
+            />
+          </ListItemButton>
+        </ListItem>
+      </Box>
+    </Drawer>
   );
 };
 
