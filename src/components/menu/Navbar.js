@@ -1,12 +1,14 @@
 import React from "react";
 import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Box, Divider, Typography } from "@mui/material";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faInfoCircle, faCog, faEnvelope, faSignOutAlt, faCalendarAlt } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { faHome, faInfoCircle, faCog, faEnvelope, faSignOutAlt, faCalendarAlt, faUsers } from "@fortawesome/free-solid-svg-icons"; // Add faUsers import
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = ({ isOpen, sidebarWidth, onLogout }) => {
+  const location = useLocation();
   const menuItems = [
     { text: "Home", icon: faHome, link: "/" },
+    { text: "Usuários", icon: faUsers, link: "/users" }, // Add this menu item
     { text: "Sobre", icon: faInfoCircle, link: "/about" },
     { text: "Serviços", icon: faCog, link: "/services" },
     { text: "Contato", icon: faEnvelope, link: "/contact" },
@@ -66,6 +68,8 @@ const Navbar = ({ isOpen, sidebarWidth, onLogout }) => {
                   borderRadius: "8px",
                   transition: "all 0.3s ease",
                   margin: "5px 16px",
+                  backgroundColor: location.pathname === item.link ? "#e0f7e4" : "transparent",
+                  color: location.pathname === item.link ? "#6d8b50" : "inherit",
                   "&:hover": {
                     backgroundColor: "#e0f7e4",
                     color: "#6d8b50",
@@ -76,12 +80,12 @@ const Navbar = ({ isOpen, sidebarWidth, onLogout }) => {
                   },
                 }}
               >
-                <ListItemIcon sx={{ color: "#6d8b50" }}>
+                <ListItemIcon sx={{ color: location.pathname === item.link ? "#6d8b50" : "inherit" }}>
                   <FontAwesomeIcon icon={item.icon} />
                 </ListItemIcon>
                 <ListItemText
                   primary={item.text}
-                  sx={{ color: "#4f6739", fontWeight: "bold" }}
+                  sx={{ color: location.pathname === item.link ? "#6d8b50" : "#4f6739", fontWeight: "bold" }}
                 />
               </ListItemButton>
             </ListItem>

@@ -3,12 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "../src/components/menu/Navbar";
 import TopNavbar from "../src/components/menu/TopNavbar";
 import CalendarDashboard from "../src/components/dashboard/CalendarDashboard";
+import UsersPage from "./pages/UsersPage";
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const sidebarWidth = 250;
 
-  // Alterna o estado de abertura do menu lateral
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };
@@ -33,6 +33,7 @@ function App() {
     >
       <Routes>
         <Route path="/" element={<CalendarDashboard />} />
+        <Route path="/users" element={<UsersPage />} />
       </Routes>
     </div>
   </div>
