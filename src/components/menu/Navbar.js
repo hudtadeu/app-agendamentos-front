@@ -8,7 +8,7 @@ const Navbar = ({ isOpen, sidebarWidth, onLogout }) => {
   const location = useLocation();
   const menuItems = [
     { text: "Home", icon: faHome, link: "/" },
-    { text: "Usuários", icon: faUsers, link: "/users" }, // Add this menu item
+    { text: "Usuários", icon: faUsers, link: "/users" }, 
     { text: "Sobre", icon: faInfoCircle, link: "/about" },
     { text: "Serviços", icon: faCog, link: "/services" },
     { text: "Contato", icon: faEnvelope, link: "/contact" },
@@ -51,7 +51,7 @@ const Navbar = ({ isOpen, sidebarWidth, onLogout }) => {
             variant="h6"
             sx={{
               fontWeight: "bold",
-              fontSize: "1.4rem",
+              fontSize: "1.2rem", 
               color: "#6d8b50",
             }}
           >
@@ -67,7 +67,7 @@ const Navbar = ({ isOpen, sidebarWidth, onLogout }) => {
                 sx={{
                   borderRadius: "8px",
                   transition: "all 0.3s ease",
-                  margin: "5px 16px",
+                  margin: "5px 12px",
                   backgroundColor: location.pathname === item.link ? "#e0f7e4" : "transparent",
                   color: location.pathname === item.link ? "#6d8b50" : "inherit",
                   "&:hover": {
@@ -85,7 +85,7 @@ const Navbar = ({ isOpen, sidebarWidth, onLogout }) => {
                 </ListItemIcon>
                 <ListItemText
                   primary={item.text}
-                  sx={{ color: location.pathname === item.link ? "#6d8b50" : "#4f6739", fontWeight: "bold" }}
+                  sx={{ color: location.pathname === item.link ? "#6d8b50" : "#4f6739", fontWeight: "bold", fontSize: "0.7rem" }} 
                 />
               </ListItemButton>
             </ListItem>
@@ -99,7 +99,7 @@ const Navbar = ({ isOpen, sidebarWidth, onLogout }) => {
             sx={{
               borderRadius: "8px",
               transition: "all 0.3s ease",
-              margin: "5px 16px",
+              margin: "5px 12px",
               "&:hover": {
                 backgroundColor: "#e0f7e4",
                 color: "#6d8b50",
@@ -115,7 +115,7 @@ const Navbar = ({ isOpen, sidebarWidth, onLogout }) => {
             </ListItemIcon>
             <ListItemText
               primary="Sair"
-              sx={{ color: "#4f6739", fontWeight: "bold" }}
+              sx={{ color: "#4f6739", fontWeight: "bold", fontSize: "0.7rem" }} 
             />
           </ListItemButton>
         </ListItem>
