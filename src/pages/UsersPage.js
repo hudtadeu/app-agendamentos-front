@@ -1,11 +1,18 @@
 import React, { useState } from "react";
-import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Checkbox, Paper, IconButton, Box, Card, CardContent, Typography, TextField, Button, MenuItem, FormControl } from "@mui/material"; // Removed InputLabel and Select imports
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Checkbox, Paper, IconButton, Box, Card, CardContent, Typography, TextField, Button, MenuItem, Modal } from "@mui/material"; // Added Modal import
 import { Edit, Delete } from "@mui/icons-material";
-import { Group, PersonAdd, Person, CheckCircle, Search } from "@mui/icons-material"; // Add CheckCircle and Search imports
+import { Group, PersonAdd, CheckCircle, Search } from "@mui/icons-material";
 
 const UsersPage = () => {
   const [status, setStatus] = useState("Ativo");
   const [selectedUsers, setSelectedUsers] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [newUser, setNewUser] = useState({
+    nomeCompleto: "",
+    email: "",
+    contato: "",
+    instagram: "",
+  });
 
   const handleStatusChange = (event) => {
     setStatus(event.target.value);
@@ -41,6 +48,28 @@ const UsersPage = () => {
   };
 
   const isSelected = (id) => selectedUsers.indexOf(id) !== -1;
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setNewUser({
+      nomeCompleto: "",
+      email: "",
+      contato: "",
+      instagram: "",
+    });
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setNewUser((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
 
   const users = [
     { id: 1, username: "user1", email: "user1@example.com", contact: "123456789", status: "Ativo" },
@@ -81,8 +110,8 @@ const UsersPage = () => {
       value: "19.860",
       change: "-14%",
       description: "Análise da semana passada",
-      icon: <CheckCircle style={{ fontSize: 20, color: "#66cc66" }} />, // Updated icon color to green
-      boxColor: "#ccffcc", // Updated box color to lighter green
+      icon: <CheckCircle style={{ fontSize: 20, color: "#66cc66" }} />, 
+      boxColor: "#ccffcc", 
       changeColor: "red",
     },
     {
@@ -90,7 +119,7 @@ const UsersPage = () => {
       value: "237",
       change: "+42%",
       description: "Análise da semana passada",
-      icon: <Search style={{ fontSize: 20, color: "#cc9966" }} />, // Updated icon
+      icon: <Search style={{ fontSize: 20, color: "#cc9966" }} />, 
       boxColor: "#ffebcc",
       changeColor: "green",
     },
@@ -190,6 +219,7 @@ const UsersPage = () => {
           />
           <Button
             variant="contained"
+            onClick={handleModalOpen}
             sx={{
               backgroundColor: "#6d8b50",
               color: "#fff",
@@ -271,6 +301,165 @@ const UsersPage = () => {
           </TableBody>
         </Table>
       </TableContainer>
+      <Modal open={isModalOpen} onClose={handleModalClose}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 400,
+            bgcolor: "background.paper",
+            boxShadow: 24,
+            p: 4,
+            borderRadius: 2,
+            border: "2px solid #6d8b50", 
+          }}
+        >
+          <Typography variant="h6" mb={2}>
+            Novo Usuário
+          </Typography>
+          <TextField
+            fullWidth
+            label="Nome Completo"
+            name="nomeCompleto"
+            value={newUser.nomeCompleto}
+            onChange={handleInputChange}
+            sx={{
+                mb: 2,
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "#ccc",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "#6d8b50", 
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "#6d8b50", 
+                  },
+                },
+                "& .MuiInputLabel-root": {
+                  color: "#999", 
+                },
+                "&:hover .MuiInputLabel-root": {
+                  color: "#6d8b50", 
+                },
+                "& .MuiInputLabel-root.Mui-focused": {
+                  color: "#6d8b50", 
+                },
+              }}
+          />
+          <TextField
+            fullWidth
+            label="E-mail"
+            name="email"
+            value={newUser.email}
+            onChange={handleInputChange}
+            sx={{
+                mb: 2,
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "#ccc", 
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "#6d8b50", 
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "#6d8b50", 
+                  },
+                },
+                "& .MuiInputLabel-root": {
+                  color: "#999", 
+                },
+                "&:hover .MuiInputLabel-root": {
+                  color: "#6d8b50", 
+                },
+                "& .MuiInputLabel-root.Mui-focused": {
+                  color: "#6d8b50", 
+                },
+              }}
+          />
+            <TextField
+            fullWidth
+            label="Contato"
+            name="contato"
+            value={newUser.contato}
+            onChange={handleInputChange}
+            sx={{
+                mb: 2,
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "#ccc", // Cor padrão das bordas
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "#6d8b50", // Cor ao passar o mouse
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "#6d8b50", // Cor ao focar
+                  },
+                },
+                "& .MuiInputLabel-root": {
+                  color: "#999", // Cor padrão da label
+                },
+                "&:hover .MuiInputLabel-root": {
+                  color: "#6d8b50", // Cor da label ao passar o mouse
+                },
+                "& .MuiInputLabel-root.Mui-focused": {
+                  color: "#6d8b50", // Cor da label ao focar
+                },
+              }}
+            />
+
+          <TextField
+            fullWidth
+            label="Instagram"
+            name="instagram"
+            value={newUser.instagram}
+            onChange={handleInputChange}
+            sx={{
+                mb: 2,
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "#ccc", // Cor padrão das bordas
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "#6d8b50", // Cor ao passar o mouse
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "#6d8b50", // Cor ao focar
+                  },
+                },
+                "& .MuiInputLabel-root": {
+                  color: "#999", // Cor padrão da label
+                },
+                "&:hover .MuiInputLabel-root": {
+                  color: "#6d8b50", // Cor da label ao passar o mouse
+                },
+                "& .MuiInputLabel-root.Mui-focused": {
+                  color: "#6d8b50", // Cor da label ao focar
+                },
+              }}
+          />
+          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Button
+              variant="contained"
+              onClick={handleModalClose}
+              sx={{ backgroundColor: "#6d8b50", "&:hover": { backgroundColor: "#4f6739" } }}
+            >
+              Adicionar
+            </Button>
+            <Button
+              onClick={handleModalClose}
+              sx={{
+                color: "#6d8b50",
+                border: "2px solid #6d8b50", 
+              }}
+            >
+              Cancelar
+            </Button>
+          </Box>
+        </Box>
+      </Modal>
     </Box>
   );
 };
