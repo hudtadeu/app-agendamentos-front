@@ -236,6 +236,8 @@ const CalendarDashboard = () => {
             left: "50%",
             transform: "translate(-50%, -50%)",
             width: 400,
+            maxHeight: "80vh", // Set maximum height
+            overflowY: "auto", // Enable scrolling if content overflows
             bgcolor: "background.paper",
             boxShadow: 24,
             p: 4,
@@ -323,7 +325,13 @@ const CalendarDashboard = () => {
             >
               Adicionar
             </Button>
-            <Button onClick={handleModalClose} sx={{ color: "#6d8b50" }}>
+            <Button
+              onClick={handleModalClose}
+              sx={{
+                color: "#6d8b50",
+                border: "1px solid #6d8b50", // Added green border
+              }}
+            >
               Cancelar
             </Button>
           </Box>
