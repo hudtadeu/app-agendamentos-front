@@ -329,7 +329,7 @@ const CalendarDashboard = () => {
               onClick={handleModalClose}
               sx={{
                 color: "#6d8b50",
-                border: "1px solid #6d8b50", // Added green border
+                border: "1px solid #6d8b50", 
               }}
             >
               Cancelar
